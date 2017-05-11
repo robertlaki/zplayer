@@ -1,0 +1,24 @@
+{
+  "name": "zplayer",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Laki Róbert <robert.laki@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "js-video-url-parser": "^0.2.3"
+  }
+}
