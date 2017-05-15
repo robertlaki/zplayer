@@ -10,7 +10,4 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-$app->get('/', function () use ($app) {
-    return view('home');
-});
+$app->get('/', 'VideoController@play');
