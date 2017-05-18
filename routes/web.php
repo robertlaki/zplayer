@@ -14,3 +14,12 @@ $app->get('/', 'VideoController@play');
 $app->post('/savevideo', 'VideoController@saveVideo');
 $app->post('/removevideo', 'VideoController@removeVideo');
 $app->post('/empty', 'VideoController@emptyQue');
+$app->get('/get/next', function() {
+    return json_encode(\App\Video::getNextVideo());
+});
+$app->get('/get/current', function() {
+    return json_encode(\App\Video::getCurrent());
+});
+$app->get('/get/que', function() {
+    return json_encode(\App\Video::getVideoQue());
+});

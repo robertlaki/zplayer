@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Mockery\CountValidator\Exception;
 
 class Video extends Model
 {
@@ -46,7 +47,7 @@ class Video extends Model
 
     public static function getNextVideo()
     {
-        return Video::where('id', '=', Video::min('id'))->where('is_current', '=', 0)->first();
+        return Video::where('id', '=', Video::where('is_current', '=', 0)->min('id'))->first();
     }
 
     public static function getVideoQue()
@@ -68,13 +69,18 @@ class Video extends Model
         ));
         $videoJsonData = json_decode(curl_exec($curl));
         curl_close($curl);
-        if (isset($videoJsonData->error)) {
-            $this->title = 'nincs adat';
-            $this->thumb = '';
+        try {
+            if (isset($videoJsonData->error)) {
+                $this->title = 'nincs adat';
+                $this->thumb = '';
+            }
+            else {
+                $this->title = $videoJsonData->items[0]->snippet->title;
+                $this->thumb = $videoJsonData->items[0]->snippet->thumbnails->default->url;
+            }
         }
-        else {
-            $this->title = $videoJsonData->items[0]->snippet->title;
-            $this->thumb = $videoJsonData->items[0]->snippet->thumbnails->default->url;
+        catch (Exception $e) {
+            print $videoJsonData;
         }
         $this->save();
         return $videoJsonData;

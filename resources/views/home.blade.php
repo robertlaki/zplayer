@@ -6,11 +6,18 @@
             var globalVideoId = '{!! $currentVideo->video_id !!}'
         </script>
     @endif
+    <br/>
+    <br/>
+    <br/>
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info">
-                    <div class="panel-heading">Panel heading without title</div>
+                    @if (!$currentVideo)
+                        <div class="panel-heading">Nincs semmi a lejátszási listában :(</div>
+                    @else
+                        <div class="panel-heading">Ezt játszuk: <b>{{ $currentVideo->title }}</b> <a target="_blank" class="small" href="{{ $currentVideo->url }}">{{ $currentVideo->url }}</a></div>
+                    @endif
                     <div class="panel-body">
                         <div id="player" class="">
                             @if (!$currentVideo)
@@ -18,7 +25,6 @@
                                     <span class="glyphicon glyphicon-ban-circle"></span> Nincs semmi a lejátszási listában :(
                                 </div>
                             @endif
-                            {{--<iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY?autoplay=1" frameborder="0" allowfullscreen></iframe>--}}
                         </div>
                     </div>
                 </div>
@@ -28,12 +34,17 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <form>
                     <div class = "input-group">
-                        <input value="https://www.youtube.com/watch?v=GM-xUu3VRsU" placeholder="YouTube link http://....." type="text" class="video-url form-control" />
+                        <input placeholder="YouTube link pl.: https://www.youtube.com/watch?v=GM-xUu3VRsU" type="text" class="video-url form-control" />
                         <span class="input-group-btn">
                             <button class="btn btn-success add-video" type="button">Hozzáadom</button>
                         </span>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <center><div id="result"></div></center>
             </div>
         </div>
         <div class="row">
