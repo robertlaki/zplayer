@@ -6,9 +6,15 @@
             var globalVideoId = '{!! $currentVideo->video_id !!}'
         </script>
     @endif
-    <br/>
-    <br/>
-    <br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <br/>
+                <h2>Z-Player</h2>
+            </div>
+        </div>
+    </div>
+    <hr/>
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">

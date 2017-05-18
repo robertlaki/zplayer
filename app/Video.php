@@ -50,9 +50,12 @@ class Video extends Model
         return Video::where('id', '=', Video::where('is_current', '=', 0)->min('id'))->first();
     }
 
-    public static function getVideoQue()
+    public static function getVideoQue($num = null)
     {
-        return Video::where('is_current', '=', 0)->get();
+        if ($num) {
+            return Video::where('is_current', '=', 0)->orderBy('id', 'asc')->limit($num)->get();
+        }
+        return Video::where('is_current', '=', 0)->orderBy('id', 'asc')->get();
     }
 
     public static function getVideoQueHtml()

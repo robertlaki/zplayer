@@ -23,3 +23,6 @@ $app->get('/get/current', function() {
 $app->get('/get/que', function() {
     return json_encode(\App\Video::getVideoQue());
 });
+$app->get('/get/que/{num}', function($num) {
+    return json_encode(\App\Video::getVideoQue($num));
+});
