@@ -27,6 +27,7 @@ elixir(function (mix) {
 
     mix.scripts([
         './resources/assets/js/app.js',
+        './resources/assets/js/player/*.js',
     ], 'public/js/app.js');
 
     mix.sass('app.scss');

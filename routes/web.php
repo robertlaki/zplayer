@@ -11,3 +11,6 @@
 |
 */
 $app->get('/', 'VideoController@play');
+$app->post('/savevideo', 'VideoController@saveVideo');
+$app->post('/removevideo', 'VideoController@removeVideo');
+$app->post('/empty', 'VideoController@emptyQue');

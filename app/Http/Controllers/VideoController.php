@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Video;
+use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
@@ -18,21 +19,31 @@ class VideoController extends Controller
 
     public function play()
     {
-        $currentVideo = $video = Video::find(Video::min('id'));
-        //$video->delete();
-        dd($currentVideo);
-        return view('home', compact('video'));
+        $currentVideo = Video::getCurrent(true);
+        $videoList = Video::getVideoQue();
+        return view('home', compact('currentVideo', 'videoList'));
     }
 
 
-    public function saveVideo()
+    public function saveVideo(Request $request)
     {
-
+        Video::createNewItem($request->toArray());
+        return Video::getVideoQueHtml();
     }
 
-    public function deleteVideo()
+    public function removeVideo(Request $request)
     {
-        print "asdasd";
+        $video = Video::find($request->video_id);
+        if ($video) {
+            $video->delete();
+        }
+        return Video::getVideoQueHtml();
+    }
+
+    public function emptyQue()
+    {
+        Video::query()->truncate();
+        return Video::getVideoQueHtml();
     }
 
 }

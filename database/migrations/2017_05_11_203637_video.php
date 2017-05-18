@@ -18,7 +18,9 @@ class Video extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('video_id', 50);
-            $table->string('video_service', 100);
+            $table->string('title');
+            $table->string('thumb');
+            $table->boolean('is_current')->default(false);
             $table->timestamps();
         });
     }

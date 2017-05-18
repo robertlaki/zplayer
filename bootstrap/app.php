@@ -27,6 +27,8 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->configure('api');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
