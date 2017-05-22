@@ -6,6 +6,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <link href="css/vendor.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
+    <title>ZPlayer by Robert Laki</title>
 </head>
 <body id="app-layout">
     @yield('content')
