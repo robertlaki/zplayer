@@ -25,6 +25,14 @@ class VideoController extends Controller
     }
 
 
+    public function add()
+    {
+        $withCurrent = true;
+        $videoList = Video::getVideoQue(null, $withCurrent);
+        return view('add', compact('videoList', 'withCurrent'));
+    }
+
+
     public function saveVideo(Request $request)
     {
         Video::createNewItem($request->toArray());

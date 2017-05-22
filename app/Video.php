@@ -50,17 +50,24 @@ class Video extends Model
         return Video::where('id', '=', Video::where('is_current', '=', 0)->min('id'))->first();
     }
 
-    public static function getVideoQue($num = null)
+    public static function getVideoQue($num = null, $withCurrent = false)
     {
-        if ($num) {
-            return Video::where('is_current', '=', 0)->orderBy('id', 'asc')->limit($num)->get();
+        $eloquent = Video::orderBy('id', 'asc');
+        if (!$withCurrent) {
+            $eloquent->where('is_current', '=', 0);
+            if ($num) {
+                $eloquent->limit($num);
+            }
         }
-        return Video::where('is_current', '=', 0)->orderBy('id', 'asc')->get();
+        elseif ($num) {
+            $eloquent->limit($num);
+        }
+        return $eloquent->get();
     }
 
     public static function getVideoQueHtml()
     {
-        return view('partials.videolist', ['videoList' => self::getVideoQue()]);
+        return view('partials.videolist', ['videoList' => self::getVideoQue(), 'withCurrent' => true]);
     }
 
     public function getVideoApiInfo()

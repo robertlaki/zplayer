@@ -10,7 +10,8 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-$app->get('/', 'VideoController@play');
+$app->get('/', 'VideoController@add');
+$app->get('/play', 'VideoController@play');
 $app->post('/savevideo', 'VideoController@saveVideo');
 $app->post('/removevideo', 'VideoController@removeVideo');
 $app->post('/empty', 'VideoController@emptyQue');
